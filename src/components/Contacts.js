@@ -1,6 +1,16 @@
 import React from 'react'
+import { FaTwitter, FaInstagram, FaLinkedin, ImLocation } from "react-icons/fa"
+import location from "../location.png"
+//import emailjs from 'emailjs-com'
 
 function Contacts() {
+
+    /*function sentEmail(e){
+        e.preventDefault();
+
+        emailjs.sentForm();
+    }*/
+
   return (
     <>
     <div className="containerc">
@@ -15,7 +25,7 @@ function Contacts() {
 
           <div className="info">
             <div className="information">
-              <img src="img/location.png" className="icon" alt="" />
+              <img src = { location } className="icon" alt="location" />
               <p>IGDTUW, Delhi-110006</p>
             </div>
           </div>
@@ -25,13 +35,13 @@ function Contacts() {
             <div className="social-media-icons">
               
               <a href="https://twitter.com/IgdtuwMsc">
-                <i className="fa fa-twitter"></i>
+                <i className="fa"> <FaTwitter /> </i>
               </a>
               <a href="https://www.instagram.com/msc.igdtuw/">
-                <i className="fa fa-instagram"></i>
+                <i className="fa"> <FaInstagram /> </i>
               </a>
               <a href="https://www.linkedin.com/company/microsoft-student-chapter-igdtuw/">
-                <i className="fa fa-linkedin"></i>
+                <i className="fa"> <FaLinkedin /> </i>
               </a>
             </div>
           </div>
@@ -40,7 +50,7 @@ function Contacts() {
           <span className="circle one"></span>
           <span className="circle two"></span>
       
-          <form action="https://formsubmit.co/microsoftstudentchapter.igdtuw@gmail.com" method="POST" autocomplete="off">
+          <form action="https://formsubmit.co/microsoftstudentchapter.igdtuw@gmail.com" method="POST" autocomplete="off" /*onSubmit={ sentEmail */>
             <h3 className="title">Contact us</h3>
             <div className="input-container">
               <input type="text" name="name" className="input" id="username" />
