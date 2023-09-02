@@ -1,15 +1,57 @@
-import React from 'react'
-import { FaTwitter, FaInstagram, FaLinkedin, ImLocation } from "react-icons/fa"
+import React, { useRef, useEffect } from 'react'
+import { FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa"
 import location from "../location.png"
+//import { useState } from "react";
 //import emailjs from 'emailjs-com'
+import emailjs from '@emailjs/browser'
 
 function Contacts() {
+  const form = useRef();
 
-    /*function sentEmail(e){
-        e.preventDefault();
+  const sendEmail = (e) => {
+    e.preventDefault();
 
-        emailjs.sentForm();
-    }*/
+    const formElement = form.current;
+
+    console.log('Form Reference:', formElement);
+
+    emailjs.sendForm('service_gnf36lt', 'template_xzoxnk5', formElement, 'ZpuZXBX47HXKAX1O2')
+      .then((result) => {
+          console.log(result.text);
+          console.log("Message Sent");
+      }, (error) => {
+          console.log(error.text);
+      });
+  };
+
+  useEffect(() => {
+    // Your JavaScript code goes here
+    const inputs = document.querySelectorAll(".input");
+
+    function focusFunc() {
+      let parent = this.parentNode;
+      parent.classList.add("focus");
+    }
+
+    function blurFunc() {
+      let parent = this.parentNode;
+      if (this.value === "") {
+        parent.classList.remove("focus");
+      }
+    }
+
+    inputs.forEach((input) => {
+      input.addEventListener("focus", focusFunc);
+      input.addEventListener("blur", blurFunc);
+    });
+
+    return () => {
+        inputs.forEach((input) => {
+          input.removeEventListener("focus", focusFunc);
+          input.removeEventListener("blur", blurFunc);
+        });
+      };
+    }, []); 
 
   return (
     <>
@@ -50,20 +92,20 @@ function Contacts() {
           <span className="circle one"></span>
           <span className="circle two"></span>
       
-          <form action="https://formsubmit.co/microsoftstudentchapter.igdtuw@gmail.com" method="POST" autocomplete="off" /*onSubmit={ sentEmail */>
+          <form ref={form} action="https://formsubmit.co/microsoftstudentchapter.igdtuw@gmail.com" method="POST" autoComplete="off" onSubmit={ sendEmail }>
             <h3 className="title">Contact us</h3>
             <div className="input-container">
-              <input type="text" name="name" className="input" id="username" />
+            <input type="text" name="name" className="input" id="username"/>
               <label for="">Name</label>
               <span>Name</span>
             </div>
             <div className="input-container">
-              <input type="email" name="email" className="input" id="email" />
+            <input type="email" name="email" className="input" id="email"/>
               <label for="">Email</label>
               <span>Email</span>
             </div>
             <div className="input-container">
-              <input type="tel" name="phone" className="input" id="phone" />
+            <input type="tel" name="phone" className="input" id="phone"/>
               <label for="">Phone</label>
               <span>Phone</span>
             </div>
@@ -72,7 +114,7 @@ function Contacts() {
               <label for="">Message</label>
               <span>Message</span>
             </div>
-            <input type="submit" name="submit" value="Send" className="btn" onclick="sendMail()" />
+            <input type="submit" name="submit" value="Send" className="btn" onClick={sendEmail} />
           </form>
         </div>
       </div>
@@ -80,5 +122,6 @@ function Contacts() {
     </>
   )
 }
+
 
 export default Contacts
